@@ -49,6 +49,6 @@ flowchart TD
 
 数据库结构保持 1024 维，无新增迁移。旧 Ollama 向量不能复用，需要 `manage.py reindex_documents`；检索过滤会排除未标记/模型不匹配的旧向量，防止混用。对源文件缺失的文档会保留失败状态。
 
-前端端口为 5174，后端端口为 8001，Docker 数据库绑定本机 5434；Compose 项目名保持 `rag-langchain`，继续使用已有数据库卷。Compose 仅保留 `db` 服务；前后端 Dockerfile、Nginx 配置及容器启动脚本已移除，前后端均在本地运行。
+前端端口为 5174，后端端口为 8000，Docker 数据库绑定本机 5435；Compose 项目名为 `rag-langchain-independent`，使用独立的 `rag-langchain-independent_postgres_data` 数据卷，与旧项目的数据卷分开。Compose 仅保留 `db` 服务；前后端 Dockerfile、Nginx 配置及容器启动脚本已移除，前后端均在本地运行。
 
 测试覆盖三个模型的 HTTP 请求格式、LangChain 链、乱序向量、批量限制、重排序索引、上下文及引用对应、错误转换、用户隔离、上传失败与事务回滚。真实 API 可用性由 `check_qwen` 验证；SQLite 单元测试无法验证 pgvector 距离运算。

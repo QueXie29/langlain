@@ -124,7 +124,7 @@ docker compose ps
 | --- | --- |
 | 数据库 | `rag_knowledge_langchain` |
 | 用户 / 密码 | `rag_user` / `rag_password` |
-| 本机地址 | `localhost:5434` |
+| 本机地址 | `localhost:5435` |
 | 容器内部端口 | `5432` |
 
 数据库端口仅绑定本机 `127.0.0.1`，数据保存在 Compose 的 `postgres_data` 命名卷中。
@@ -162,7 +162,7 @@ npm.cmd run dev
 | 前端 | `http://localhost:5174`，端口占用时直接报错 |
 | Django 后端 | `http://127.0.0.1:8000` |
 | 前端 API 请求 | 默认使用 `/api`，由 Vite 转发到 `http://127.0.0.1:8000` |
-| PostgreSQL | `localhost:5434` |
+| PostgreSQL | `localhost:5435` |
 
 修改后端端口时，同步修改 [Vite 代理配置](frontend/vite.config.js)；修改前端访问地址时，核对 `CORS_ALLOWED_ORIGINS`。前端也支持通过 `frontend/.env.local` 中的 `VITE_API_BASE_URL` 指定 API 前缀，例如 `http://127.0.0.1:8000/api`，修改后重启 Vite。
 
@@ -193,8 +193,8 @@ macOS / Linux 可使用相同流程，将虚拟环境的 Python 路径替换为 
 | `RAG_CHUNK_OVERLAP` | `120` | 目标重叠字符数，必须小于块大小 |
 | `MAX_UPLOAD_SIZE_MB` | `20` | 后端单文件上传上限；前端提示文案当前固定为 20 MB |
 | `MAX_EXTRACTED_CHARS` | `1000000` | 单文档提取文本字符上限 |
-| `POSTGRES_PORT` | `5434` | 本地后端连接数据库的端口 |
-| `POSTGRES_HOST_PORT` | `5434` | Compose 映射到本机的数据库端口，变更时同步修改 `POSTGRES_PORT` |
+| `POSTGRES_PORT` | `5435` | 本地后端连接数据库的端口 |
+| `POSTGRES_HOST_PORT` | `5435` | Compose 映射到本机的数据库端口，变更时同步修改 `POSTGRES_PORT` |
 
 `.env.example` 还提供 Django 主机、跨域及 HTTPS 相关配置。当前启动命令面向本地开发；部署时需配置独立的服务进程、静态资源与 API 转发，并调整密钥、`DJANGO_DEBUG` 和 HTTPS 设置。Vite 的开发代理不会包含在前端构建产物中。
 
@@ -289,7 +289,7 @@ npm.cmd run build
 | 现象 | 排查方向 |
 | --- | --- |
 | Docker 无法连接 | 启动 Docker Desktop，确认引擎就绪且 `docker info` 可返回服务端信息 |
-| 数据库连接失败 | 检查 `docker compose ps` 的健康状态，以及 `.env` 的数据库连接信息；本地后端使用 `localhost:5434` |
+| 数据库连接失败 | 检查 `docker compose ps` 的健康状态，以及 `.env` 的数据库连接信息；本地后端使用 `localhost:5435` |
 | 前端请求失败 / 代理报错 | 确认 Django 运行于 `127.0.0.1:8000`，与 Vite `/api` 代理目标一致 |
 | 数据库或前端端口占用 | 数据库同步调整 `POSTGRES_HOST_PORT` / `POSTGRES_PORT`；前端调整 Vite 端口及跨域配置 |
 | 模型 HTTP 400 / 404 | 核对原生 Base URL、模型名称和服务支持的请求格式 |

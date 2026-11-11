@@ -82,7 +82,7 @@ else:
             "USER": os.getenv("POSTGRES_USER", "rag_user"),
             "PASSWORD": os.getenv("POSTGRES_PASSWORD", "rag_password"),
             "HOST": os.getenv("POSTGRES_HOST", "localhost"),
-            "PORT": os.getenv("POSTGRES_PORT", "5434"),
+            "PORT": os.getenv("POSTGRES_PORT", "5435"),
             "CONN_MAX_AGE": 60,
         }
     }
