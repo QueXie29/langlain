@@ -1,6 +1,6 @@
 # 知屿：LangChain + 千问 + Django + Vue 3
 
-本目录 `langlain/` 是 LangChain 版本。三个模型已经接入实际流程：
+本目录 `langlain/` 是 LangChain 版本。三个模型已经接入实际流程：1
 
 | 用途 | 模型 | 接入方式 |
 | --- | --- | --- |
